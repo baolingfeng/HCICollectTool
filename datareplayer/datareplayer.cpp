@@ -25,7 +25,6 @@ DataReplayer::DataReplayer(QWidget *parent): QWidget(parent), pthread(this), eve
 
 	dw = new DistributedWidget(this);
 	dw->setGeometry(10,860, 800,60);
-	dw->initForProcess(logMan);
 
 	//eventsBar.setLogMan(logMan);
 	
@@ -84,8 +83,9 @@ void DataReplayer::loadLog()
 {
 	//logMan.readEventLog();
 	displayImage(seq);
-	eventsBar.DisplayProcessBar();
-	eventsBar.update();
+	dw->initForProcess(logMan);
+	//eventsBar.DisplayProcessBar();
+	//eventsBar.update();
 
 	QStandardItemModel* model = (QStandardItemModel*)ui.acctree->model();
 	model->clear();
@@ -107,7 +107,7 @@ void DataReplayer::loadLog()
 	
 		QList<QStandardItem*> firstRow;
 		QStandardItem *timeItem = new QStandardItem(QString::fromStdString(time));
-		QStandardItem *nameItem = new QStandardItem(QString::fromLocal8Bit(ele.name.c_str()));
+		QStandardItem *nameItem = new QStandardItem(QString::fromUtf8(ele.name.c_str()));
 		QStandardItem *typeItem = new QStandardItem(QString::fromStdString(ele.type));
 		QStandardItem *boundItem = new QStandardItem(QString::fromStdString(ss.str()));
 		QStandardItem *valueItem = new QStandardItem(QString::fromStdString(ele.value));

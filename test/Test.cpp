@@ -9,13 +9,14 @@
 #include <OleAuto.h>
 #include <UIAutomation.h>
 #include <UIAutomationClient.h>
+#include <locale.h>
 
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp" 
 
-#include "d3d9.h"
-#include "D3dx9tex.h"
+//#include "d3d9.h"
+//#include "D3dx9tex.h"
 
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
@@ -25,8 +26,8 @@
 #pragma comment (lib,"Psapi.lib")
 #pragma comment (lib,"OleAcc.lib")
 
-#pragma comment (lib,"d3d9.lib")
-#pragma comment (lib,"d3dx9.lib")
+//#pragma comment (lib,"d3d9.lib")
+//#pragma comment (lib,"d3dx9.lib")
 
 #ifdef _DEBUG
 #define new   new(_NORMAL_BLOCK, __FILE__, __LINE__)
@@ -34,7 +35,7 @@
 
 using namespace std;
 
-IDirect3DDevice9*	g_pd3dDevice;
+//IDirect3DDevice9*	g_pd3dDevice;
 
 string to_utf8(const wchar_t* buffer, int len)
 {
@@ -46,11 +47,30 @@ string to_utf8(const wchar_t* buffer, int len)
 		return "";  
 	}  
 	
-		string newbuffer;
-		newbuffer.resize(nLen) ;
+	string newbuffer;
+	newbuffer.resize(nLen);
 	::WideCharToMultiByte(CP_ACP, 0, buffer, -1, const_cast< char* >(newbuffer.c_str()), nLen, NULL, NULL);  
 
     return newbuffer;
+}
+
+string ws2s(const wstring& ws)
+{
+	string curLocale = setlocale(LC_ALL, NULL); // curLocale = "C";
+
+	setlocale(LC_ALL, "C");
+
+	const wchar_t* _Source = ws.c_str();
+	size_t _Dsize = 2 * ws.size() + 1;
+	char *_Dest = new char[_Dsize];
+	memset(_Dest,0,_Dsize);
+	wcstombs(_Dest,_Source,_Dsize);
+	string result = _Dest;
+	delete []_Dest;
+
+	setlocale(LC_ALL, curLocale.c_str());
+
+	return result;
 }
 
 string to_utf8(const wstring& str)
@@ -371,6 +391,7 @@ string WINAPI GetElementNameStr(IUIAutomationElement* element)
 	return to_utf8(GetElementNameWStr(element));
 }
 
+/*
 BOOL ScreenShot(LPDIRECT3DDEVICE9 lpDevice, HWND hWnd, TCHAR* fileName)
 {
 	IDirect3DSurface9* pSurface;
@@ -379,11 +400,12 @@ BOOL ScreenShot(LPDIRECT3DDEVICE9 lpDevice, HWND hWnd, TCHAR* fileName)
         D3DFMT_A8R8G8B8, D3DPOOL_SCRATCH, &pSurface, NULL);
     lpDevice->GetFrontBufferData(0, pSurface);
 
-    D3DXSaveSurfaceToFile(_T("Desktop.png"),D3DXIFF_BMP,pSurface,NULL,NULL);
+    //D3DXSaveSurfaceToFile(_T("Desktop.png"),D3DXIFF_BMP,pSurface,NULL,NULL);
     pSurface->Release(); 
 
 	return true;
 }
+
 
 HRESULT	InitD3D(HWND hWnd)
 {
@@ -432,6 +454,7 @@ HRESULT	InitD3D(HWND hWnd)
 
 	return S_OK;
 }
+*/
 
 cv::Mat addImageOnFront(cv::Point pt, cv::Mat& bg, cv::Mat fg, cv::Mat mask)
 {
@@ -504,7 +527,25 @@ void addimagewithmask()
 int main(int argc, _TCHAR* argv[])
 {
 	
-	addimagewithmask();
+	HWND hwnd = (HWND)0x0005073E;
+
+	wstring wwname = GetWindowNameWStr(hwnd);
+
+	string wname = GetWindowNameStr(hwnd);
+	string wname2 = ws2s(wwname);
+
+	FILE* file;
+	_tfopen_s(&file,_T("test.txt"),_T("a"));
+
+	fprintf_s(file, "%s\n", wname.c_str());
+	//fwprintf_s(file, _T("%s\n"), wwname.c_str());
+
+	fclose(file);
+
+	wprintf(_T("%s\n"), wwname.c_str());
+	printf("%s\n", wname.c_str());
+
+	//addimagewithmask();
 
 	//LPDIRECT3DDEVICE9 lpDevice = Direct3DCreate9(D3D_SDK_VERSION);
 
