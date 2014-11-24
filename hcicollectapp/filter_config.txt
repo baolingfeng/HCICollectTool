@@ -1,0 +1,13 @@
+Process WHITE
+iexplore
+EXCEL
+firefox
+chrome
+explorer
+devenv
+#
+Window BLACK
+Î¢²©
+NBA
+#
+

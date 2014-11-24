@@ -1,0 +1,6 @@
+2014-11-01-14-58-05-229 818031467
+RuntimeID: 
+Type: tab item
+Name: RECT structure (Windows)
+Bounding: 325 0 480 31
+Value: 

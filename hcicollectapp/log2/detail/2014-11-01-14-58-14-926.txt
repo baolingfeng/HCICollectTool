@@ -1,0 +1,6 @@
+2014-11-01-14-58-14-926 858465323
+RuntimeID: 42 65760 2 -2147483647 65760 -4 36 
+Type: button
+Name: D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+Bounding: 802 984 864 1024
+Value: 

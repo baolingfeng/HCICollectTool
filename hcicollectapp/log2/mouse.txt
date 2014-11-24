@@ -1,0 +1,635 @@
+2014-11-01-14-57-41-015
+MOUSE LEFT DOWN 102 387
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-41-666
+MOUSE LEFT UP 102 387
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-41-678
+MOUSE MOVE 102 387
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-42-997
+MOUSE WHEEL 612 281
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-43-081
+MOUSE WHEEL 609 284
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-43-925
+MOUSE WHEEL 609 284
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-43-958
+MOUSE MOVE 608 284
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-44-013
+MOUSE WHEEL 603 286
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-44-661
+MOUSE WHEEL 602 286
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-44-733
+MOUSE WHEEL 602 286
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-44-813
+MOUSE WHEEL 602 286
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-45-445
+MOUSE MOVE 602 286
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-46-133
+MOUSE MOVE 630 176
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-46-269
+MOUSE LEFT DOWN 628 182
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-46-423
+MOUSE LEFT UP 628 182
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-47-061
+MOUSE MOVE 627 182
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-47-142
+MOUSE MOVE 616 195
+3018fe, (445 195 889 475)
+devenv.exe 5004
+HCICollectDll (Running) - Microsoft Visual Studio
+2014-11-01-14-57-48-174
+MOUSE LEFT DOWN 530 390
+3018fe, (445 195 889 475)
+devenv.exe 5004
+HCICollectDll (Running) - Microsoft Visual Studio
+2014-11-01-14-57-48-365
+MOUSE LEFT UP 530 390
+3018fe, (445 195 889 475)
+devenv.exe 5004
+HCICollectDll (Running) - Microsoft Visual Studio
+2014-11-01-14-57-48-597
+MOUSE MOVE 530 390
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-49-093
+MOUSE LEFT DOWN 429 355
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-49-281
+MOUSE LEFT UP 429 355
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-49-661
+MOUSE MOVE 428 354
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-51-045
+MOUSE MOVE 358 368
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-51-758
+MOUSE MOVE 358 365
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-53-453
+MOUSE MOVE 356 363
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-56-206
+MOUSE MOVE 346 350
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-56-566
+MOUSE MOVE 898 283
+b1ce2,Solution Explorer (888 196 1273 934)
+devenv.exe 5004
+Solution Explorer
+2014-11-01-14-57-57-758
+MOUSE LEFT DOWN 985 404
+b1ce2,Solution Explorer (888 196 1273 934)
+devenv.exe 5004
+Solution Explorer
+2014-11-01-14-57-57-868
+MOUSE LEFT UP 985 404
+b1ce2,Solution Explorer (888 196 1273 934)
+devenv.exe 5004
+Solution Explorer
+2014-11-01-14-57-57-958
+MOUSE LEFT DOWN 985 404
+b1ce2,Solution Explorer (888 196 1273 934)
+devenv.exe 5004
+Solution Explorer
+2014-11-01-14-57-58-049
+MOUSE LEFT UP 985 404
+b1ce2,Solution Explorer (888 196 1273 934)
+devenv.exe 5004
+Solution Explorer
+2014-11-01-14-57-58-454
+MOUSE MOVE 984 404
+b1ce2,Solution Explorer (888 196 1273 934)
+devenv.exe 5004
+Solution Explorer
+2014-11-01-14-57-58-558
+MOUSE MOVE 882 393
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-58-974
+MOUSE LEFT DOWN 691 380
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-59-166
+MOUSE LEFT UP 691 380
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-59-677
+MOUSE MOVE 690 380
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-57-59-989
+MOUSE MOVE 391 804
+231b10,Locals (6 783 879 933)
+devenv.exe 5004
+Locals
+2014-11-01-14-58-00-046
+MOUSE MOVE 335 936
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-58-00-093
+MOUSE MOVE 327 988
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-00-215
+MOUSE MOVE 321 983
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-58-01-013
+MOUSE MOVE 284 985
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-01-893
+MOUSE LEFT DOWN 201 1002
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-02-501
+MOUSE LEFT UP 201 1002
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-03-997
+MOUSE MOVE 201 1002
+100e0,Running applications (56 984 1043 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-04-205
+MOUSE MOVE 219 983
+1048a,AcFun弹幕视频网 - 中国宅文化基地 - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-05-229
+MOUSE LEFT DOWN 370 13
+1048a,AcFun弹幕视频网 - 中国宅文化基地 - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-05-855
+MOUSE LEFT UP 370 13
+1048a,AcFun弹幕视频网 - 中国宅文化基地 - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-06-581
+MOUSE MOVE 370 13
+1048a,AcFun弹幕视频网 - 中国宅文化基地 - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-07-053
+MOUSE WHEEL 478 361
+1048a,AcFun弹幕视频网 - 中国宅文化基地 - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-07-235
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-07-814
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-07-847
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-07-898
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-07-962
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-08-687
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-08-717
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-08-757
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-09-245
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-09-279
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-09-325
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-09-381
+MOUSE WHEEL 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-09-893
+MOUSE MOVE 478 361
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-11-045
+MOUSE MOVE 492 994
+100e0,Running applications (56 984 1043 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-11-222
+MOUSE MOVE 517 983
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-14-406
+MOUSE MOVE 586 949
+1048a,RECT structure (Windows) - Mozilla Firefox (0 0 1280 984)
+firefox.exe 6356
+
+2014-11-01-14-58-14-542
+MOUSE MOVE 774 985
+100e0,Running applications (56 984 1043 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-14-926
+MOUSE LEFT DOWN 821 1018
+100e0,Running applications (56 984 1043 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-15-054
+MOUSE LEFT UP 821 1018
+100e0,Running applications (56 984 1043 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-15-622
+MOUSE MOVE 821 1017
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-15-678
+MOUSE MOVE 793 981
+221b30, (0 965 1280 984)
+EditPlus.exe 9540
+D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+2014-11-01-14-58-15-695
+MOUSE MOVE 755 949
+12067e, (0 942 1280 965)
+EditPlus.exe 9540
+D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+2014-11-01-14-58-15-702
+MOUSE MOVE 729 929
+4b0964, (263 923 1261 940)
+EditPlus.exe 9540
+D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+2014-11-01-14-58-15-710
+MOUSE MOVE 706 912
+2c07ae, (256 70 1261 923)
+EditPlus.exe 9540
+D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+2014-11-01-14-58-15-854
+MOUSE MOVE 240 419
+122198, (0 295 251 917)
+EditPlus.exe 9540
+素材/目录窗口
+2014-11-01-14-58-15-902
+MOUSE MOVE 187 285
+2f171c, (0 122 251 292)
+EditPlus.exe 9540
+素材/目录窗口
+2014-11-01-14-58-16-278
+MOUSE MOVE 110 121
+201c80,素材/目录窗口 (0 68 254 942)
+EditPlus.exe 9540
+D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+2014-11-01-14-58-16-287
+MOUSE MOVE 106 118
+201b5a, (0 97 251 120)
+EditPlus.exe 9540
+素材/目录窗口
+2014-11-01-14-58-16-334
+MOUSE MOVE 92 93
+422038, (0 71 251 97)
+EditPlus.exe 9540
+素材/目录窗口
+2014-11-01-14-58-16-374
+MOUSE MOVE 84 69
+201c80,素材/目录窗口 (0 68 254 942)
+EditPlus.exe 9540
+D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+2014-11-01-14-58-16-382
+MOUSE MOVE 84 67
+270d68,标准 (0 42 692 70)
+EditPlus.exe 9540
+标准
+2014-11-01-14-58-16-494
+MOUSE MOVE 68 41
+68193a,D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus (0 0 1280 984)
+EditPlus.exe 9540
+
+2014-11-01-14-58-17-510
+MOUSE MOVE 44 33
+68193a,D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus (0 0 1280 984)
+EditPlus.exe 9540
+
+2014-11-01-14-58-17-574
+MOUSE MOVE 32 43
+1107b2,标准 (0 42 1280 68)
+EditPlus.exe 9540
+D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+2014-11-01-14-58-17-590
+MOUSE MOVE 29 45
+270d68,标准 (0 42 692 70)
+EditPlus.exe 9540
+标准
+2014-11-01-14-58-17-782
+MOUSE LEFT DOWN 18 50
+270d68,标准 (0 42 692 70)
+EditPlus.exe 9540
+标准
+2014-11-01-14-58-18-011
+MOUSE MOVE 18 51
+270d68,标准 (0 42 692 70)
+EditPlus.exe 9540
+标准
+2014-11-01-14-58-18-011
+MOUSE LEFT UP 18 50
+270d68,标准 (0 42 692 70)
+EditPlus.exe 9540
+标准
+2014-11-01-14-58-18-102
+MOUSE MOVE 19 68
+201c80,素材/目录窗口 (0 68 254 942)
+EditPlus.exe 9540
+D:\Bao Lingfeng\PilotExperiment\log_lj\mouse.txt - EditPlus
+2014-11-01-14-58-18-128
+MOUSE MOVE 20 70
+2a1df0, (11 67 246 279)
+EditPlus.exe 9540
+
+2014-11-01-14-58-18-869
+MOUSE LEFT DOWN 35 79
+2a1df0, (11 67 246 279)
+EditPlus.exe 9540
+
+2014-11-01-14-58-19-070
+MOUSE LEFT UP 35 79
+2a1df0, (11 67 246 279)
+EditPlus.exe 9540
+
+2014-11-01-14-58-19-533
+MOUSE MOVE 36 79
+422038, (0 71 251 97)
+EditPlus.exe 9540
+素材/目录窗口
+2014-11-01-14-58-19-613
+MOUSE MOVE 110 99
+201b5a, (0 97 251 120)
+EditPlus.exe 9540
+素材/目录窗口
+2014-11-01-14-58-19-661
+MOUSE MOVE 214 123
+2f171c, (0 122 251 292)
+EditPlus.exe 9540
+素材/目录窗口
+2014-11-01-14-58-19-686
+MOUSE MOVE 254 133
+621934, (254 68 1280 942)
+EditPlus.exe 9540
+Noname2 - EditPlus
+2014-11-01-14-58-19-693
+MOUSE MOVE 267 134
+28199e, (256 70 1261 923)
+EditPlus.exe 9540
+Noname2 - EditPlus
+2014-11-01-14-58-26-797
+MOUSE MOVE 332 140
+28199e, (256 70 1261 923)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-27-109
+MOUSE MOVE 322 68
+621934, (254 68 1280 942)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-27-349
+MOUSE MOVE 531 71
+28199e, (256 70 1261 923)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-28-317
+MOUSE MOVE 334 120
+28199e, (256 70 1261 923)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-29-150
+MOUSE MOVE 335 120
+28199e, (256 70 1261 923)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-29-598
+MOUSE MOVE 867 924
+1c1afc, (263 923 1261 940)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-29-614
+MOUSE MOVE 868 947
+12067e, (0 942 1280 965)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-29-630
+MOUSE MOVE 868 966
+221b30, (0 965 1280 984)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-29-662
+MOUSE MOVE 868 986
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-29-726
+MOUSE MOVE 868 983
+221b30, (0 965 1280 984)
+EditPlus.exe 9540
+Noname2 * - EditPlus
+2014-11-01-14-58-29-974
+MOUSE MOVE 877 984
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-30-470
+MOUSE LEFT DOWN 882 991
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-30-647
+MOUSE LEFT UP 882 991
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-30-726
+MOUSE MOVE 882 991
+100e0,Running applications (56 984 1062 1024)
+explorer.exe 5584
+Running applications
+2014-11-01-14-58-30-870
+MOUSE MOVE 877 982
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-58-30-942
+MOUSE MOVE 846 929
+231b10,Locals (6 783 879 933)
+devenv.exe 5004
+Locals
+2014-11-01-14-58-31-006
+MOUSE MOVE 740 769
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-58-32-118
+MOUSE LEFT DOWN 492 76
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-01-14-58-32-310
+MOUSE LEFT UP 492 76
+4d1928,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1280 984)
+devenv.exe 5004
+
+2014-11-24-09-49-08-167
+MOUSE MOVE 666 512
+a098c,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1920 1040)
+devenv.exe 34088
+
+2014-11-24-09-49-08-262
+MOUSE MOVE 478 387
+2014b4,D:\baolingfeng\Dropbox\Projects\HCICollectDll\Debug\HCICollectApp.exe (50 50 727 392)
+HCICollectApp.exe 39372
+
+2014-11-24-09-49-08-926
+MOUSE LEFT DOWN 406 252
+2014b4,D:\baolingfeng\Dropbox\Projects\HCICollectDll\Debug\HCICollectApp.exe (50 50 727 392)
+HCICollectApp.exe 39372
+
+2014-11-24-09-49-09-317
+MOUSE LEFT UP 406 252
+2014b4,D:\baolingfeng\Dropbox\Projects\HCICollectDll\Debug\HCICollectApp.exe (50 50 727 392)
+HCICollectApp.exe 39372
+
+2014-11-24-09-49-09-318
+MOUSE MOVE 406 250
+2014b4,D:\baolingfeng\Dropbox\Projects\HCICollectDll\Debug\HCICollectApp.exe (50 50 727 392)
+HCICollectApp.exe 39372
+
+2014-11-24-09-49-10-061
+MOUSE MOVE 728 222
+a098c,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1920 1040)
+devenv.exe 34088
+
+2014-11-24-09-49-10-589
+MOUSE LEFT DOWN 812 297
+a098c,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1920 1040)
+devenv.exe 34088
+
+2014-11-24-09-49-10-921
+MOUSE LEFT UP 812 297
+a098c,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1920 1040)
+devenv.exe 34088
+
+2014-11-24-09-49-11-261
+MOUSE MOVE 812 300
+a098c,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1920 1040)
+devenv.exe 34088
+
+2014-11-24-09-49-12-589
+MOUSE LEFT DOWN 767 62
+a098c,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1920 1040)
+devenv.exe 34088
+
+2014-11-24-09-49-12-685
+MOUSE LEFT UP 767 62
+a098c,HCICollectDll (Running) - Microsoft Visual Studio (0 0 1920 1040)
+devenv.exe 34088
+

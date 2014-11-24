@@ -1,0 +1,6 @@
+2014-11-01-14-58-01-893 858400955
+RuntimeID: 42 65760 2 -2147483647 65760 -4 5 
+Type: button
+Name: AcFun弹幕视频网 - 中国宅文化基地 - Mozilla Firefox
+Bounding: 182 984 244 1024
+Value: 
