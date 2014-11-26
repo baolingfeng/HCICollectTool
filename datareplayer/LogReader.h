@@ -23,6 +23,8 @@ public:
 	cv::Mat readScreenshotByCV(string timestamp);
 	QImage readScreenshotByQT(string timestamp);
 
+	vector<LogEvent> readMouseEvents();
+	vector<LogEvent> readKeyInputEvents();
 	vector<LogEvent> read(bool isKeepUnknown=true);
 
 	void setLogDir(string folder) {logDir = folder;}

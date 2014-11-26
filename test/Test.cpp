@@ -10,6 +10,7 @@
 #include <UIAutomation.h>
 #include <UIAutomationClient.h>
 #include <locale.h>
+#include <fstream>
 
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -524,9 +525,26 @@ void addimagewithmask()
 	//cv::waitKey(0);
 }
 
-int main(int argc, _TCHAR* argv[])
+int main0(int argc, _TCHAR* argv[])
 {
+	ifstream is("keyboard.txt");
+	//is.imbue(std::locale());
+	//is.imbue(std::locale("UTF8"));
+
+	string line;
+	getline(is, line);
+	cout<<line<<endl;
+	is.close();
+
+	wstring wline;
+	wifstream wis("keyboard.txt");
+	wis.imbue(std::locale());
+	getline(wis, wline);
+	wis.close();
 	
+
+	//std::locale utf8_locale(std::locale(), new gel::stdx::utf8cvt<true>);
+/*	
 	HWND hwnd = (HWND)0x0005073E;
 
 	wstring wwname = GetWindowNameWStr(hwnd);
@@ -544,7 +562,7 @@ int main(int argc, _TCHAR* argv[])
 
 	wprintf(_T("%s\n"), wwname.c_str());
 	printf("%s\n", wname.c_str());
-
+	*/
 	//addimagewithmask();
 
 	//LPDIRECT3DDEVICE9 lpDevice = Direct3DCreate9(D3D_SDK_VERSION);

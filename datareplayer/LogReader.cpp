@@ -120,6 +120,7 @@ bool LogReader::getAccElement(string timestamp, AccElement& e)
 {
 	string filename = logDir + "detail/" + timestamp + ".txt";
 	ifstream uifile(filename);
+	//uifile.imbue(std::locale());
 	string line;
 
 	if(uifile.is_open())
@@ -257,11 +258,13 @@ vector<LogEvent> LogReader::read(bool isKeepUnknown)
 				if(interval>0)
 				{
 					events.push_back(mevent);
+					mevent = LogEvent();
 					mflag = getOneMouseEvent(mouseFile, mevent);
 				}
 				else
 				{
 					events.push_back(kevent);
+					kevent = LogEvent();
 					kflag = getOneKeyEvent(keyFile, kevent);
 				}
 			}
@@ -269,6 +272,36 @@ vector<LogEvent> LogReader::read(bool isKeepUnknown)
 		}
 	}
 
+	return events;
+}
+
+vector<LogEvent> LogReader::readMouseEvents()
+{
+	ifstream mouseFile(logDir + "mouse.txt");
+
+	vector<LogEvent> events;
+	while(true)
+	{
+		LogEvent mevent;
+		if(!getOneMouseEvent(mouseFile, mevent)) break;
+
+		events.push_back(mevent);
+	}
+	return events;
+}
+
+vector<LogEvent> LogReader::readKeyInputEvents()
+{
+	ifstream keyFile(logDir + "keyboard.txt");
+
+	vector<LogEvent> events;
+	while(true)
+	{
+		LogEvent kevent;
+		if(!getOneKeyEvent(keyFile, kevent)) break;
+
+		events.push_back(kevent);
+	}
 	return events;
 }
 

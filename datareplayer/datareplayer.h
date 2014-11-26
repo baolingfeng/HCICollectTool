@@ -32,6 +32,7 @@ public slots:
 	void nextEvent();
 
 	void accClicked(const QModelIndex& index);
+	void showContextMenuForWidget(const QPoint &);
 signals:
 	void sendDuration(double);
 

@@ -1,6 +1,0 @@
-2014-11-01-14-58-32-118 859188171
-RuntimeID: 7 5004 27837602 
-Type: image
-Name: 
-Bounding: 479 72 495 88
-Value: 

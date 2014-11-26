@@ -31,10 +31,11 @@ void DistributedWidget::paintEvent(QPaintEvent* event)
 
 		painter.setBrush(color_map[items[i].getName()]);
 		painter.setPen(color_map[items[i].getName()]);
-
 		painter.drawRect(QRect(x,y,w,h));
 		x = x + w;
 	}
+
+	painter.setPen("black");
 
 	int avgW = rect().width() / category.size();
 	x = 0;

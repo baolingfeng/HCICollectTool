@@ -2,16 +2,20 @@
 #include "qdebug.h"
 #include "qstandarditemmodel.h"
 #include <sstream>
+#include <QMenu>
 
 DataReplayer::DataReplayer(QWidget *parent): QWidget(parent), pthread(this), eventsBar(this)
 {
 	ui.setupUi(this);
+	ui.acctree->setContextMenuPolicy(Qt::CustomContextMenu);
+
 	connect(ui.loadbtn, SIGNAL(clicked()), this, SLOT(loadLog()));
 	connect(ui.playbtn, SIGNAL(clicked()), this, SLOT(play()));
 	//connect(&pthread, SIGNAL(nextEvent()), this, SLOT(nextEvent()));
 	connect(this, SIGNAL(sendDuration(double)), &pthread, SLOT(setInterval(double)));
 	connect(ui.acctree, SIGNAL(clicked(const QModelIndex&)), this, SLOT(accClicked(const QModelIndex&)));
-		
+	connect(ui.acctree, SIGNAL(customContextMenuRequested(const QPoint &)),this, SLOT(showContextMenuForWidget(const QPoint &)));
+	
 	//dw->initForProcess();
 	//eventsBar.setGeometry(10,860, 800,30);
 	
@@ -20,7 +24,7 @@ DataReplayer::DataReplayer(QWidget *parent): QWidget(parent), pthread(this), eve
 	index = 0;
 	seq = 0;
 
-	logReader.setLogDir("../HCICollectApp/log/");
+	logReader.setLogDir("../hcicollectapp/log/");
 	logMan.setEvents(logReader.read());
 
 	dw = new DistributedWidget(this);
@@ -107,7 +111,7 @@ void DataReplayer::loadLog()
 	
 		QList<QStandardItem*> firstRow;
 		QStandardItem *timeItem = new QStandardItem(QString::fromStdString(time));
-		QStandardItem *nameItem = new QStandardItem(QString::fromUtf8(ele.name.c_str()));
+		QStandardItem *nameItem = new QStandardItem(QString::fromLocal8Bit(ele.name.c_str()));
 		QStandardItem *typeItem = new QStandardItem(QString::fromStdString(ele.type));
 		QStandardItem *boundItem = new QStandardItem(QString::fromStdString(ss.str()));
 		QStandardItem *valueItem = new QStandardItem(QString::fromStdString(ele.value));
@@ -116,12 +120,17 @@ void DataReplayer::loadLog()
 
 		//firstRow.push_back(timeItem);
 		//firstRow.push_back(nameItem);
-		root->appendRow(timeItem);
+		QList<QStandardItem*> items;
+		items.append(timeItem);
+		items.append(nameItem);
 
-		timeItem->appendRow(nameItem);
-		timeItem->appendRow(typeItem);
-		timeItem->appendRow(boundItem);
-		timeItem->appendRow(valueItem);
+		//root->appendRow(timeItem);
+		root->appendColumn(items);
+
+		//timeItem->appendRow(nameItem);
+		nameItem->appendRow(typeItem);
+		nameItem->appendRow(boundItem);
+		nameItem->appendRow(valueItem);
 	}
 	
 }
@@ -196,4 +205,14 @@ void DataReplayer::accClicked(const QModelIndex& index)
 		displayImage(img);
 	}
 	
+}
+
+void DataReplayer::showContextMenuForWidget(const QPoint &pos)
+{
+	QModelIndex index = ui.acctree->indexAt(pos);
+	
+	//QMenu contextMenu(tr("Context menu"), this);
+	//contextMenu.addAction(new QAction(tr("Hello"), this));
+	//this->mapTo();
+	//contextMenu.exec(mapToParent(pos));
 }

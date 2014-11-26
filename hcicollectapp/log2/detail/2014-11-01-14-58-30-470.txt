@@ -1,6 +1,0 @@
-2014-11-01-14-58-30-470 858597483
-RuntimeID: 42 65760 2 -2147483647 65760 -4 38 
-Type: button
-Name: HCICollectDll (Running) - Microsoft Visual Studio
-Bounding: 864 984 926 1024
-Value: 

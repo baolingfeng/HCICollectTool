@@ -24,6 +24,7 @@ public:
 public:
 	void setEvents(vector<LogEvent>& logEvent);
 	void calcStatistic();
+	void groupAccAction();
 
 	string getScreenshotTimestamp(int seq);
 	//string getScreenImagePath(int seq=0);

@@ -1,6 +1,0 @@
-2014-11-01-14-57-46-269 859513931
-RuntimeID: 7 5004 34327759 
-Type: combo box
-Name: 
-Bounding: 444 175 880 196
-Value: 

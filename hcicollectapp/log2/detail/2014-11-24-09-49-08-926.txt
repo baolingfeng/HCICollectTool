@@ -1,6 +1,0 @@
-2014-11-24-09-49-08-926 1334716927
-RuntimeID: 42 2102452 
-Type: window
-Name: D:\baolingfeng\Dropbox\Projects\HCICollectDll\Debug\HCICollectApp.exe
-Bounding: 50 50 727 392
-Value: 

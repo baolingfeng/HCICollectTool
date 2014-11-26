@@ -30,6 +30,7 @@ void LogManager::setEvents(vector<LogEvent>& events)
 {
 	this->events = events;
 	calcStatistic();
+	groupAccAction();
 }
 
 void LogManager::calcStatistic()
@@ -71,6 +72,35 @@ void LogManager::calcStatistic()
 
 	p.to = len - 1;
 	processes.push_back(p);
+}
+
+void LogManager::groupAccAction()
+{
+	vector<vector<int>> groups;
+	vector<int> hasgroup;
+	for(int i=0; i<accui_events.size(); i++)
+	{
+		if(std::find(hasgroup.begin(), hasgroup.end(), i) != hasgroup.end()) continue;
+
+		int ei = accui_events[i];
+
+		vector<int> g;
+		g.push_back(ei);
+		hasgroup.push_back(i);
+		for(int j=i+1; j<accui_events.size(); j++)
+		{
+			int ej = accui_events[j];
+
+			AccElement a1 = events[ei].acc;
+			AccElement a2 = events[ej].acc;
+			if(a1.name == a2.name && a1.type == a2.type && a1.value == a2.value)
+			{
+				g.push_back(ej);
+				hasgroup.push_back(j);
+			}
+		}
+		groups.push_back(g);
+	}
 }
 
 double LogManager::calcDuration(int from, int to)
