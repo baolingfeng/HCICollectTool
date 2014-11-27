@@ -36,6 +36,19 @@ public:
 	AccElement acc;
 };
 
+class CopyEvent
+{
+public:
+	CopyEvent() {};
+	~CopyEvent() {}
+public:
+	string timestamp;
+	string windowName;
+	string processName;
+	string parentWindowName;
+	string text;
+};
+
 class EventProcess
 {
 public:

@@ -26,6 +26,7 @@ public:
 	vector<LogEvent> readMouseEvents();
 	vector<LogEvent> readKeyInputEvents();
 	vector<LogEvent> read(bool isKeepUnknown=true);
+	vector<CopyEvent> readCopyEvents();
 
 	void setLogDir(string folder) {logDir = folder;}
 	string getLogDir() {return logDir;}

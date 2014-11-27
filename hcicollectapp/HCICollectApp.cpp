@@ -154,7 +154,7 @@ LRESULT CALLBACK ClipMonitorProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam
 			return DefWindowProc(hwnd, uMsg, wParam, lParam);
 		 }
 
-		 printf("copydata: %s, %s, %s\n", timestamp.c_str(), text.c_str(), windowname.c_str());
+		 //printf("copydata: %s, %s, %s\n", timestamp.c_str(), text.c_str(), windowname.c_str());
 		 
 		 FILE* fcopy;
 		 errno_t err = _tfopen_s(&fcopy,_T("log/copypaste.txt"),_T("a"));

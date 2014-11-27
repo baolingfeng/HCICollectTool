@@ -24,7 +24,10 @@ public:
 	~DBInterface(void);
 
 	bool initTable(string name);
-	bool insertMouseEvent(string name, LogEvent e);
+	bool insertMouseEvent(string name, LogEvent e, string logDir);
+	bool insertKeyEvent(string name, LogEvent e, string logDir);
+	bool insertCopyEvent(string name, CopyEvent e, string logDir);
+	bool isExistsLog(string name);
 	void close();
 
 private:

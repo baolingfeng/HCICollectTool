@@ -305,6 +305,39 @@ vector<LogEvent> LogReader::readKeyInputEvents()
 	return events;
 }
 
+vector<CopyEvent> LogReader::readCopyEvents()
+{
+	ifstream cpfile(logDir + "copypaste.txt");
+
+	vector<CopyEvent> events;
+	while(cpfile.is_open() && !cpfile.eof())
+	{
+		string line;
+		getline(cpfile, line);
+
+		CopyEvent e;
+		e.timestamp = line;
+		
+		getline(cpfile, line);
+		e.windowName = line;
+
+		getline(cpfile, line);
+		e.processName = line;
+
+		getline(cpfile, line);
+		e.parentWindowName = line;
+
+		getline(cpfile, line);
+		e.text = line;
+
+		getline(cpfile, line);
+		events.push_back(e);
+	}
+
+	cpfile.close();
+	return events;
+}
+
 cv::Mat LogReader::readScreenshotByCV(string timestamp)
 {
 	string path = logDir + "screen/" + timestamp + ".png";

@@ -8,6 +8,7 @@
 #include <QStandardItemModel>
 #include <QVBoxLayout>
 
+#include <vector>
 #include "DBInterface.h"
 
 /*
@@ -29,14 +30,29 @@ public:
 	DataTransferTool(QWidget *parent=0);
 	~DataTransferTool();
 
+	void displayMouseEvent();
+	void displayKeyEvent();
+	void displayCopyEvent();
+
 public slots:
 	void loadLogFile();
 	void exportToDB();
+	void filterEvents();
 private:
 	Ui::DataTransferWindow ui;
 
 	QGroupBox *groupbox;
 	QTreeView *logView;
+
+	QString logDir;
+	QString from_timestamp;
+	QString to_timestamp;
+	vector<LogEvent> mevents;
+	vector<LogEvent> kevents;
+	vector<CopyEvent> cevents;
+	vector<LogEvent> originalMevents;
+	vector<LogEvent> originalKevents;
+	vector<CopyEvent> originalCevents;
 
 	DBInterface db;
 };
