@@ -22,6 +22,7 @@ public:
 	//int index;
 	string timestamp;
 	string name;
+	string eventType;
 	EventType type;
 	
 	POINT pt;

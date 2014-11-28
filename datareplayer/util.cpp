@@ -147,30 +147,36 @@ cv::Rect fromWindowRECT(RECT w_r)
 	return c_r;
 }
 
-void addImageOnFront(cv::Point pt, cv::Mat& bg, cv::Mat fg, cv::Mat mask)
+cv::Mat addImageOnFront(cv::Point pt, cv::Mat bg, cv::Mat fg, cv::Mat mask)
 {
-	//cv::Mat res;
-	//bg.copyTo(res);
+	cv::Mat res;
+	bg.copyTo(res);
 
-	cv::Rect rect(pt.x, pt.y, fg.cols, fg.rows); 
-	if(pt.x + fg.cols > bg.cols || pt.y + fg.rows > bg.rows) //now don't consider the mouse is part outside of screen
+	try
 	{
-		return;
-	}
+		cv::Rect rect(pt.x, pt.y, fg.cols, fg.rows); 
+		if(pt.x + fg.cols > bg.cols || pt.y + fg.rows > bg.rows) //now don't consider the mouse is part outside of screen
+		{
+			return res;
+		}
 	
-	cv::Mat roi = bg(rect);
-	//cv::Mat copyRoi;
-	//roi.copyTo(copyRoi);
+		cv::Mat roi = res(rect);
+		//cv::Mat copyRoi;
+		//roi.copyTo(copyRoi);
 
-	cv::Mat mask2;
-	cv::bitwise_not(mask, mask2);
+		cv::Mat mask2;
+		cv::bitwise_not(mask, mask2);
 
-	cv::Mat m1, m2, dst;
-	cv::bitwise_and(roi, roi, m1,  mask2);
-	cv::bitwise_and(fg, fg, m2,  mask);
-	cv::add(m1, m2, dst);
+		cv::Mat m1, m2, dst;
+		cv::bitwise_and(roi, roi, m1,  mask2);
+		cv::bitwise_and(fg, fg, m2,  mask);
+		cv::add(m1, m2, dst);
 
-	dst.copyTo(roi);
-
-	//return fg;
+		dst.copyTo(roi);
+	}
+	catch(Exception &e)
+	{
+		std::cout<<e.msg;
+	}
+	return res;
 }

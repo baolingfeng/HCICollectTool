@@ -382,6 +382,7 @@ void DataTransferTool::exportToDB()
 		encodeLogEvent(mevents[i]);
 		db.insertMouseEvent(name, mevents[i], logDir.toStdString());
 	}
+	db.updateLogTime(name,  mevents[0].timestamp, mevents[mevents.size()-1].timestamp);
 
 	progressDlg->setValue(0);
 	progressDlg->setLabelText(tr("inserting keyinput record into database...."));  

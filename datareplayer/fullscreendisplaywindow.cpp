@@ -101,9 +101,9 @@ void FullScreenDisplayWindow::setImage()
 
 	cv::Mat screenshot = logReader.readScreenshotByCV(logMan.getScreenshotTimestamp(seq));
 
-	addImageOnFront(cv::Point(e.pt.x, e.pt.y), screenshot, MOUSEICON, MOUSEMASK);
+	cv::Mat m = addImageOnFront(cv::Point(e.pt.x, e.pt.y), screenshot, MOUSEICON, MOUSEMASK);
 
-	QImage qimg = Mat2QImage(screenshot);
+	QImage qimg = Mat2QImage(m);
 
 	setImage(qimg);
 }

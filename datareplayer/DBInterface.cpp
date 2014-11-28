@@ -8,9 +8,9 @@
 
 void printException(sql::SQLException &e)
 {
-	qDebug() << "# ERR: SQLException in " << __FILE__;
-	qDebug() << "(" << __FUNCTION__ << ") on line " 
-		<< __LINE__ << endl;
+	qDebug() << "# ERR: SQLException in " << __FILE__
+			<< "(" << __FUNCTION__ << ") on line " 
+			<< __LINE__ << endl;
 	qDebug() << "# ERR: " << e.what();
 	qDebug() << " (MySQL error code: " << e.getErrorCode();
 	qDebug() << ", SQLState: " << QString::fromStdString(e.getSQLState()) << " )" << endl;
@@ -57,6 +57,12 @@ bool DBInterface::initTable(string name)
 	try {
 		sql::PreparedStatement *prep_stmt;
 
+		prep_stmt = conn->prepareStatement("call add_log(?)");
+		prep_stmt->setString(1, sql::SQLString(name.c_str()));
+		prep_stmt->execute();
+
+		/*
+		//this part is executed in database by stored procedure
 		prep_stmt = conn->prepareStatement("INSERT INTO logs(log_name, create_time) VALUES (?, now())");
 		prep_stmt->setString(1, sql::SQLString(name.c_str()));
 		prep_stmt->execute();
@@ -72,7 +78,7 @@ bool DBInterface::initTable(string name)
 			`timestamp` VARCHAR(30) NOT NULL, \
 			`event_name` VARCHAR(45) NOT NULL, \
 			`pos_x` INT NULL, \
-			`pox_y` INT NULL, \
+			`pos_y` INT NULL, \
 			`window_name` VARCHAR(300) NULL, \
 			`process_name` VARCHAR(100) NULL, \
 			`parent_window` VARCHAR(300) NULL, \
@@ -149,6 +155,7 @@ bool DBInterface::initTable(string name)
 		stmt->execute(sql.c_str());
 
 		delete stmt;
+		*/
 
 		return true;
 	}
@@ -167,7 +174,7 @@ bool DBInterface::insertMouseEvent(string name, LogEvent e, string logDir)
 		sql::Statement *stmt;
 		sql::ResultSet *rs;
 
-		string sql = "INSERT INTO mouse_event_" + name + "(timestamp, event_name, pos_x, pox_y, window_name, process_name, parent_window, \
+		string sql = "INSERT INTO mouse_event_" + name + "(timestamp, event_name, pos_x, pos_y, window_name, process_name, parent_window, \
 			win_rect_left, win_rect_top, win_rect_right, win_rect_bottom, has_screenshot, has_acc) VALUES (?, ?,?,?, ?, ?,?,?, ?, ?,?,?, ?)";
 		prep_stmt = conn->prepareStatement(sql.c_str());
 		prep_stmt->setString(1, e.timestamp.c_str());
@@ -340,4 +347,199 @@ bool DBInterface::isExistsLog(string name)
 	}
 
 	return true;
+}
+
+bool DBInterface::updateLogTime(string name, string from, string to)
+{
+	try
+	{
+		sql::PreparedStatement *prep_stmt;
+		sql::ResultSet *rs;
+
+		//string sql = "select id from logs where log_name = ?";
+		//prep_stmt = conn->prepareStatement(sql.c_str());
+		//prep_stmt->setString(1, name.c_str());
+		//rs = prep_stmt->executeQuery(); 
+
+		//if(rs->next())
+		//{
+		//int id = rs->getInt(1);
+		string sql = "update logs set from_time=?, to_time=? where log_name = ?";
+		prep_stmt = conn->prepareStatement(sql.c_str());
+		prep_stmt->setString(1, from.c_str());
+		prep_stmt->setString(2, to.c_str());
+		prep_stmt->setString(3, name.c_str());
+		prep_stmt->execute();	
+		//}
+		
+		delete rs;
+		delete prep_stmt;
+	}
+	catch(sql::SQLException &exception)
+	{
+		printException(exception);
+		return false;
+	}
+	return true;
+}
+
+vector<LogRecord> DBInterface::getAllLogRecords()
+{
+	vector<LogRecord> records;
+	try
+	{
+		sql::Statement *stmt;
+		sql::ResultSet *rs;
+
+		string sql = "select id, log_name, create_time from logs";
+		stmt = conn->createStatement();
+		rs = stmt->executeQuery(sql.c_str());
+		while(rs->next())
+		{
+			LogRecord rd;
+			rd.id = rs->getInt("id");
+			rd.name = string(rs->getString(2).c_str());
+			rd.date = string(rs->getString(3).c_str());
+			records.push_back(rd);
+		}
+
+		delete rs;
+		delete stmt;
+	}
+	catch(sql::SQLException &exception)
+	{
+		printException(exception);
+	}
+
+	return records;
+}
+
+AccElement DBInterface::getAccElement(string name, int id)
+{
+	AccElement acc;
+	try
+	{
+		sql::PreparedStatement *prep_stmt;
+		sql::ResultSet *rs;
+
+		string sql = "select * from mouse_event_action_" + name + " where id = ?";
+		prep_stmt = conn->prepareStatement(sql.c_str());
+		prep_stmt->setInt(1, id);
+
+		rs = prep_stmt->executeQuery();
+		if(rs->next())
+		{
+			acc.name = string(rs->getString("action_name").c_str());
+			acc.type = string(rs->getString("action_type").c_str());
+			acc.value = string(rs->getString("action_value").c_str());
+			acc.bounding.left = rs->getInt("bound_left");
+			acc.bounding.top = rs->getInt("bound_top");
+			acc.bounding.right = rs->getInt("bound_right");
+			acc.bounding.bottom = rs->getInt("bound_bottom");
+		}
+
+		delete rs;
+		delete prep_stmt;
+	}
+	catch(sql::SQLException &exception)
+	{
+		printException(exception);
+	}
+
+	return acc;
+}
+
+vector<LogEvent> DBInterface::getAllEvents(string name)
+{
+	vector<LogEvent> events;
+	try
+	{
+		sql::Statement *stmt;
+		sql::ResultSet *rs;
+
+		string sql = "select * from v_log_events_" + name;	
+		stmt = conn->createStatement();
+		rs = stmt->executeQuery(sql.c_str());
+
+		while(rs->next())
+		{
+			LogEvent e;
+			int id = rs->getInt("id");
+			e.timestamp = string(rs->getString("timestamp").c_str());
+			e.name = string(rs->getString("event_name").c_str());
+			e.pt.x = rs->getInt("pos_x");
+			e.pt.y = rs->getInt("pos_y");
+			e.windowName = string(rs->getString("window_name").c_str());
+			e.processName = string(rs->getString("process_name").c_str());
+			e.parentWindowName = string(rs->getString("parent_window").c_str());
+			e.winRect.left = rs->getInt("win_rect_left");
+			e.winRect.top = rs->getInt("win_rect_top");
+			e.winRect.right = rs->getInt("win_rect_right");
+			e.winRect.bottom = rs->getInt("win_rect_bottom");
+			e.isHasSrceenshot = rs->getInt("has_screenshot");
+			e.isHasAcc = rs->getInt("has_acc");
+			e.eventType = string(rs->getString("event_type").c_str());
+			
+			if(e.isHasAcc)
+			{
+				e.acc = getAccElement(name, id);
+			}
+			events.push_back(e);
+		}
+
+		delete rs;
+		delete stmt;
+	}
+	catch(sql::SQLException &exception)
+	{
+		printException(exception);
+	}
+
+	return events;
+}
+
+cv::Mat DBInterface::getScreenshot(string name, string timestamp, string eventType)
+{
+	cv::Mat img;
+	try
+	{
+		string table;
+		if(eventType == "mouse")
+		{
+			table = "mouse";
+		}
+		else
+		{
+			table = "key";
+		}
+
+		string sql = "select screenshot from " + table + "_event_" + name + " a, " + table + "_event_screenshot_" + name + " b where a.id = b.id and a.timestamp = '" + timestamp + "'";
+		sql::Statement *stmt;
+		stmt = conn->createStatement();
+
+		sql::ResultSet *rs = stmt->executeQuery(sql.c_str());
+		if(rs->next())
+		{
+			istream* is = rs->getBlob(1);
+			is->seekg(0, is->end);
+			int len = is->tellg();
+			char* temp = new char[len];
+			is->seekg(0, is->beg);
+			is->read(temp, len);
+
+			vector<char> buffer(temp, temp+len);
+			cv::Mat m(buffer);
+
+			img = cv::imdecode(m, 1);
+		}
+
+		delete rs;
+		delete stmt;
+	}
+	catch(sql::SQLException &exception)
+	{
+		printException(exception);
+	}
+
+	return img;
 }

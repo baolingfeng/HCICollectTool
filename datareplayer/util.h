@@ -40,7 +40,7 @@ Rect         getOverlap( Rect         rc1, Rect         rc2 );
 void getJetColors( vector<Scalar>& colors, int sz);
 
 cv::Rect fromWindowRECT(RECT w_r);
-void addImageOnFront(cv::Point pt, cv::Mat& bg, cv::Mat fg, cv::Mat mask);
+cv::Mat addImageOnFront(cv::Point pt, cv::Mat bg, cv::Mat fg, cv::Mat mask);
 
 template<typename T>
 T stringToNumber(const string& numberAsString)

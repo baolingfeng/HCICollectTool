@@ -11,6 +11,11 @@
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
 
+#include "opencv2/core/core.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp" 
+
+
 using namespace std;
 
 int main()
@@ -49,9 +54,17 @@ int main()
 		is->seekg(0, is->beg);
 		is->read(temp, len);
 
-		ofstream os("test.png", std::ofstream::binary);
-		os.write(temp, len);
-		os.close();
+		vector<char> buffer(temp, temp+len);
+		cv::Mat m(buffer);
+
+		cv::Mat img = cv::imdecode(m, 1);
+
+		cv::imshow("test", img);
+		cv::waitKey();
+
+		//ofstream os("test.png", std::ofstream::binary);
+		//os.write(temp, len);
+		//os.close();
 		delete temp;
 	}
 	

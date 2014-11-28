@@ -8,7 +8,11 @@
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
 
+#include <vector>
+
 #include "LogEvent.h"
+#include "dao.h"
+#include "util.h"
 
 using namespace std;
 
@@ -28,6 +32,13 @@ public:
 	bool insertKeyEvent(string name, LogEvent e, string logDir);
 	bool insertCopyEvent(string name, CopyEvent e, string logDir);
 	bool isExistsLog(string name);
+
+	bool updateLogTime(string name, string from, string to);
+	vector<LogRecord> getAllLogRecords();
+	vector<LogEvent> getAllEvents(string name);
+	AccElement getAccElement(string name, int id);
+	cv::Mat getScreenshot(string name, string timestamp, string eventType);
+
 	void close();
 
 private:
