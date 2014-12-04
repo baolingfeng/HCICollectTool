@@ -150,14 +150,16 @@ void DataTransferTool::displayMouseEvent()
 	mouseModel->setHeaderData(9, Qt::Horizontal, QObject::tr("Duration"));
 	ui.mouseView->setModel(mouseModel);
 
-	QStandardItemModel* actionModel = new QStandardItemModel(0, 7, this);
+	QStandardItemModel* actionModel = new QStandardItemModel(0, 9, this);
 	actionModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Timestamp"));
 	actionModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Window Name"));
 	actionModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Process Name"));
 	actionModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Action Name"));
 	actionModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Action Type"));
-	actionModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Action Value"));
-	actionModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Bounding"));
+	actionModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Parent Element"));
+	actionModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Parent Element Type"));
+	actionModel->setHeaderData(7, Qt::Horizontal, QObject::tr("Action Value"));
+	actionModel->setHeaderData(8, Qt::Horizontal, QObject::tr("Bounding"));
 	ui.actionView->setModel(actionModel);
 
 	//QAbstractItemModel* mouseModel = ui.mouseView->model();	
@@ -193,8 +195,10 @@ void DataTransferTool::displayMouseEvent()
 			actionModel->setData(actionModel->index(actionIndex, 2), QString::fromStdString(mevents[i].processName));
 			actionModel->setData(actionModel->index(actionIndex, 3), QString::fromLocal8Bit(mevents[i].acc.name.c_str()));
 			actionModel->setData(actionModel->index(actionIndex, 4), QString::fromStdString(mevents[i].acc.type));
-			actionModel->setData(actionModel->index(actionIndex, 5), QString::fromStdString(mevents[i].acc.value));
-			actionModel->setData(actionModel->index(actionIndex, 6), "(" + QString::number(mevents[i].acc.bounding.left)  + " , " + QString::number(mevents[i].acc.bounding.top)  
+			actionModel->setData(actionModel->index(actionIndex, 5), QString::fromLocal8Bit(mevents[i].acc.parent_name.c_str()));
+			actionModel->setData(actionModel->index(actionIndex, 6), QString::fromStdString(mevents[i].acc.parent_type));
+			actionModel->setData(actionModel->index(actionIndex, 7), QString::fromStdString(mevents[i].acc.value));
+			actionModel->setData(actionModel->index(actionIndex, 8), "(" + QString::number(mevents[i].acc.bounding.left)  + " , " + QString::number(mevents[i].acc.bounding.top)  
 			+ " , " + QString::number(mevents[i].acc.bounding.right)  + " , " + QString::number(mevents[i].acc.bounding.bottom)  + ")");
 				
 			actionIndex++;
@@ -296,6 +300,7 @@ void encodeLogEvent(LogEvent& e)
 	e.windowName = encodeString(e.windowName.c_str());
 	e.acc.name = encodeString(e.acc.name.c_str());
 	e.acc.value = encodeString(e.acc.value);
+	e.acc.parent_name = encodeString(e.acc.parent_name);
 }
 
 void encodeCopyEvent(CopyEvent& e)

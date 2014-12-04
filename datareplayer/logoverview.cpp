@@ -49,11 +49,17 @@ void LogOverview::onCustomMenuRequested(const QPoint &pos)
 {
     QMenu *menu=new QMenu(this);
 	QAction *refresh = new QAction("Refresh", this);
+	QAction *viewDetail = new QAction("View Detail Information", this);
+	QAction *del = new QAction("Delete the Log", this);
     menu->addAction(refresh);
+	menu->addAction(viewDetail);
+	menu->addAction(del);
     
     menu->popup(ui.logList->viewport()->mapToGlobal(pos));
 
 	connect(refresh, SIGNAL(triggered()), this, SLOT(refresh()));
+	connect(viewDetail, SIGNAL(triggered()), this, SLOT(veiwDetail()));
+	connect(del, SIGNAL(triggered()), this, SLOT(delLog()));
 }
 
 void LogOverview::refresh()
@@ -70,4 +76,30 @@ void LogOverview::replay()
 	
 	replayer = new LogReplayer(0, name.toStdString(), db);
 	replayer->showMaximized();
+}
+
+void LogOverview::veiwDetail()
+{
+	QModelIndex index = ui.logList->currentIndex();
+	if(!index.isValid()) return;
+
+	QAbstractItemModel* model = ui.logList->model();
+	QString name = model->data(model->index(index.row(), 0), Qt::DisplayRole).toString();
+
+	LogDetailWidget* w = new LogDetailWidget(NULL, name);
+	w->show();
+	w->setWindowModality(Qt::WindowModality::ApplicationModal);
+}
+
+void LogOverview::delLog()
+{
+	QModelIndex index = ui.logList->currentIndex();
+	if(!index.isValid()) return;
+	
+	QAbstractItemModel* model = ui.logList->model();
+	QString name = model->data(model->index(index.row(), 0), Qt::DisplayRole).toString();
+	
+	db->delLog(name.toStdString());
+
+	refresh();
 }

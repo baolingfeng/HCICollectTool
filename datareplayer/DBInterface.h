@@ -33,9 +33,12 @@ public:
 	bool insertCopyEvent(string name, CopyEvent e, string logDir);
 	bool isExistsLog(string name);
 
+	bool delLog(string name);
 	bool updateLogTime(string name, string from, string to);
 	vector<LogRecord> getAllLogRecords();
 	vector<LogEvent> getAllEvents(string name);
+	LogEvent getMouseEventByTimestamp(string name, string timestamp);
+	vector<CopyEvent> getAllCopyEvent(string name);
 	AccElement getAccElement(string name, int id);
 	cv::Mat getScreenshot(string name, string timestamp, string eventType);
 

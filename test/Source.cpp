@@ -18,8 +18,12 @@
 
 using namespace std;
 
-int main()
+int main_source()
 {
+	string str1 = "中文";
+	string str2 = "中文";
+	bool f = (str1 == str2);
+
 	sql::Driver *driver;
 	sql::Connection *con;
 	sql::Statement *stmt;

@@ -5,6 +5,8 @@ firefox
 chrome
 explorer
 devenv
+eclipse
+java
 #
 Window BLACK
 Î¢²©

@@ -36,7 +36,7 @@ class DistributedWidget : public QWidget
 	Q_OBJECT
 
 public:
-	DistributedWidget(QWidget *parent);
+	DistributedWidget(QWidget *parent=0);
 	~DistributedWidget();
 
 	void initForProcess(LogManager& logMan);

@@ -113,6 +113,8 @@ BOOL IsNeedProcess(string processName, string windowName, string parentWindowNam
 			}
 		}
 	}
+
+	return true;
 }
 
 LRESULT CALLBACK ClipMonitorProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam)

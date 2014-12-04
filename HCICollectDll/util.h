@@ -63,8 +63,8 @@ std::string __declspec(dllexport) WINAPI GetElementValueStr(IUIAutomationElement
 std::wstring __declspec(dllexport) WINAPI GetRuntimeIDWStr(SAFEARRAY* runtimeId);
 std::string __declspec(dllexport) WINAPI GetRuntimeIDStr(SAFEARRAY* runtimeId);
 
-std::wstring __declspec(dllexport) WINAPI GetElementParentNameWStr(IUIAutomationTreeWalker* walker, IUIAutomationElement* element);
-std::string __declspec(dllexport) WINAPI GetElementParentNameStr(IUIAutomationTreeWalker* walker,IUIAutomationElement* element);
+void __declspec(dllexport) WINAPI GetElementParentNameWStr(IUIAutomationTreeWalker* walker, IUIAutomationElement* element, string& pname, string& ptype);
+//std::string __declspec(dllexport) WINAPI GetElementParentNameStr(IUIAutomationTreeWalker* walker,IUIAutomationElement* element);
 
 
 double GetTimeDifference( SYSTEMTIME &st1, SYSTEMTIME &st2 );

@@ -68,7 +68,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(OPENCV_DIR)\include;$(OPENCV_DIR)\include\opencv;$(OPENCV_DIR)\include\opencv2;C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.4\include;C:\boost\boost_1_57_0;$(IncludePath)</IncludePath>
+    <IncludePath>$(OPENCV_DIR)\include;$(OPENCV_DIR)\include\opencv;$(OPENCV_DIR)\include\opencv2;C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.4\include;C:\boost\boost_1_57_0;D:\dtl-1.18\;$(IncludePath)</IncludePath>
     <LibraryPath>$(OPENCV_DIR)\lib;C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.4\lib\opt;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -154,6 +154,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dtl_test.cpp" />
     <ClCompile Include="gdiplus_test.cpp" />
     <ClCompile Include="graphviz_test.cpp" />
     <ClCompile Include="Source.cpp" />

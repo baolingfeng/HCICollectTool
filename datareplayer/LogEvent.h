@@ -10,6 +10,8 @@ struct AccElement
 	string type;
 	string name;
 	string value;
+	string parent_name;
+	string parent_type;
 	RECT bounding;
 };
 
@@ -40,7 +42,7 @@ public:
 class CopyEvent
 {
 public:
-	CopyEvent() {};
+	CopyEvent() {}
 	~CopyEvent() {}
 public:
 	string timestamp;
@@ -48,6 +50,19 @@ public:
 	string processName;
 	string parentWindowName;
 	string text;
+};
+
+class PasteEvent
+{
+public:
+	PasteEvent() {}
+	~PasteEvent() {}
+public:
+	string timestamp;
+	string windowName;
+	string processName;
+	string parentWindowName;
+	string method;
 };
 
 class EventProcess

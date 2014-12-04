@@ -8,6 +8,8 @@
 #include "dao.h"
 #include "datatransfertool.h"
 #include "logreplayer.h"
+#include "logdetailwidget.h"
+
 
 class LogOverview : public QMainWindow
 {
@@ -24,7 +26,8 @@ public slots:
 	void replay();
 	void onCustomMenuRequested(const QPoint &pos);
 	void refresh();
-
+	void veiwDetail();
+	void delLog();
 private:
 
 	DBInterface* db;

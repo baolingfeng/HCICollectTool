@@ -131,21 +131,27 @@ bool LogReader::getAccElement(string timestamp, AccElement& e)
 			getline(uifile,line); //2nd line: runtime 
 
 			getline(uifile,line); //3rd line: ui type
-			e.type = line.substr(6);
+			e.type = line;
 		
 			getline(uifile,line); //4th line: ui name
-			e.name = line.substr(6);
+			e.name = line;
 
 			getline(uifile,line); //5th line: bounding
-			line = line.substr(10);
+			line = line;
 			vector<string> tmpv = split(line," ");
 			e.bounding.left = stringToNumber<int>(tmpv[0]);
 			e.bounding.top = stringToNumber<int>(tmpv[1]);
 			e.bounding.right = stringToNumber<int>(tmpv[2]);
 			e.bounding.bottom = stringToNumber<int>(tmpv[3]);
 
+			getline(uifile, line);
+			e.parent_name = line;
+
+			getline(uifile, line);
+			e.parent_type = line;
+
 			getline(uifile,line); //6th line: ui value
-			e.value = line.substr(6);
+			e.value = line;
 		}
 		catch(exception e)
 		{
@@ -184,6 +190,8 @@ bool LogReader::getOneKeyEvent(ifstream& keyFile, LogEvent& logEvent)
 	{
 		logEvent.name = "unknown";
 		logEvent.type = EventType::unknown;
+		logEvent.processName = "unknown";
+		logEvent.windowName = "unknown";
 		return true;
 	}
 	
@@ -280,11 +288,15 @@ vector<LogEvent> LogReader::readMouseEvents()
 	ifstream mouseFile(logDir + "mouse.txt");
 
 	vector<LogEvent> events;
+	int size = 0;
 	while(true)
 	{
 		LogEvent mevent;
 		if(!getOneMouseEvent(mouseFile, mevent)) break;
 
+		//int interval = GetTimeDifference(toSystemTime(events[size].timestamp), toSystemTime(mevent.timestamp));
+		
+		size++;
 		events.push_back(mevent);
 	}
 	return events;

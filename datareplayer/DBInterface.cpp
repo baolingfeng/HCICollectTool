@@ -221,17 +221,19 @@ bool DBInterface::insertMouseEvent(string name, LogEvent e, string logDir)
 
 		if(e.isHasAcc)
 		{
-			sql = "INSERT INTO mouse_event_action_" + name + " (id, action_name, action_type, action_value, bound_left, bound_top, bound_right, bound_bottom) \
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO mouse_event_action_" + name + " (id, action_name, action_type, action_value, action_parent, action_parent_type, bound_left, bound_top, bound_right, bound_bottom) \
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			prep_stmt = conn->prepareStatement(sql.c_str());
 			prep_stmt->setInt(1, autoId);
 			prep_stmt->setString(2, e.acc.name.c_str());
 			prep_stmt->setString(3, e.acc.type.c_str());
 			prep_stmt->setString(4, e.acc.value.c_str());
-			prep_stmt->setInt(5, e.acc.bounding.left);
-			prep_stmt->setInt(6, e.acc.bounding.top);
-			prep_stmt->setInt(7, e.acc.bounding.right);
-			prep_stmt->setInt(8, e.acc.bounding.bottom);
+			prep_stmt->setString(5, e.acc.parent_name.c_str());
+			prep_stmt->setString(6, e.acc.parent_type.c_str());
+			prep_stmt->setInt(7, e.acc.bounding.left);
+			prep_stmt->setInt(8, e.acc.bounding.top);
+			prep_stmt->setInt(9, e.acc.bounding.right);
+			prep_stmt->setInt(10, e.acc.bounding.bottom);
 			prep_stmt->execute();
 			delete prep_stmt;
 		}
@@ -244,6 +246,8 @@ bool DBInterface::insertMouseEvent(string name, LogEvent e, string logDir)
 		printException(exception);
 		return false;
 	}
+
+	return true;
 }
 
 bool DBInterface::insertKeyEvent(string name, LogEvent e, string logDir)
@@ -354,7 +358,7 @@ bool DBInterface::updateLogTime(string name, string from, string to)
 	try
 	{
 		sql::PreparedStatement *prep_stmt;
-		sql::ResultSet *rs;
+		//sql::ResultSet *rs;
 
 		//string sql = "select id from logs where log_name = ?";
 		//prep_stmt = conn->prepareStatement(sql.c_str());
@@ -372,7 +376,7 @@ bool DBInterface::updateLogTime(string name, string from, string to)
 		prep_stmt->execute();	
 		//}
 		
-		delete rs;
+		//delete rs;
 		delete prep_stmt;
 	}
 	catch(sql::SQLException &exception)
@@ -432,6 +436,8 @@ AccElement DBInterface::getAccElement(string name, int id)
 			acc.name = string(rs->getString("action_name").c_str());
 			acc.type = string(rs->getString("action_type").c_str());
 			acc.value = string(rs->getString("action_value").c_str());
+			acc.parent_name = string(rs->getString("action_parent").c_str());
+			acc.parent_type = string(rs->getString("action_parent_type").c_str());
 			acc.bounding.left = rs->getInt("bound_left");
 			acc.bounding.top = rs->getInt("bound_top");
 			acc.bounding.right = rs->getInt("bound_right");
@@ -542,4 +548,108 @@ cv::Mat DBInterface::getScreenshot(string name, string timestamp, string eventTy
 	}
 
 	return img;
+}
+
+bool DBInterface::delLog(string name)
+{
+	try
+	{
+		sql::PreparedStatement *prep_stmt;
+
+		prep_stmt = conn->prepareStatement("call del_log(?)");
+		prep_stmt->setString(1, sql::SQLString(name.c_str()));
+		prep_stmt->execute();
+
+		delete prep_stmt;
+	}
+	catch(sql::SQLException &exception)
+	{
+		printException(exception);
+		return false;
+	}
+
+	return true;
+}
+
+vector<CopyEvent> DBInterface::getAllCopyEvent(string name)
+{
+	vector<CopyEvent> cpevents;
+	try
+	{
+		sql::PreparedStatement *prep_stmt;
+		sql::Statement *stmt;
+		sql::ResultSet *rs;
+		string sql = "select * from copy_event_" + name;
+
+		stmt = conn->createStatement();
+		rs = stmt->executeQuery(sql.c_str());
+
+		while(rs->next())
+		{
+			CopyEvent e;
+			e.timestamp = string(rs->getString("timestamp").c_str());
+			if(e.timestamp == "") continue;
+
+			e.text = string(rs->getString("text").c_str());
+			e.windowName = string(rs->getString("window_name").c_str());
+			e.processName = string(rs->getString("process_name").c_str());
+			e.parentWindowName = string(rs->getString("parent_window").c_str());
+			cpevents.push_back(e);
+		}
+
+		delete stmt;
+		delete rs;
+	}
+	catch(sql::SQLException &exception)
+	{
+		printException(exception);
+	}
+	return cpevents;
+}
+
+LogEvent DBInterface::getMouseEventByTimestamp(string name, string timestamp)
+{
+	LogEvent e;
+	try
+	{
+		sql::PreparedStatement *prep_stmt;
+		sql::Statement *stmt;
+		sql::ResultSet *rs;
+
+		string sql = "select * from mouse_event_" + name + " where timestamp = ?";
+		prep_stmt = conn->prepareStatement(sql.c_str());
+		prep_stmt->setString(1, timestamp.c_str());
+		rs = prep_stmt->executeQuery();
+		if(rs->next())
+		{
+			int id = rs->getInt("id");
+			e.timestamp = string(rs->getString("timestamp").c_str());
+			e.name = string(rs->getString("event_name").c_str());
+			e.pt.x = rs->getInt("pos_x");
+			e.pt.y = rs->getInt("pos_y");
+			e.windowName = string(rs->getString("window_name").c_str());
+			e.processName = string(rs->getString("process_name").c_str());
+			e.parentWindowName = string(rs->getString("parent_window").c_str());
+			e.winRect.left = rs->getInt("win_rect_left");
+			e.winRect.top = rs->getInt("win_rect_top");
+			e.winRect.right = rs->getInt("win_rect_right");
+			e.winRect.bottom = rs->getInt("win_rect_bottom");
+			e.isHasSrceenshot = rs->getInt("has_screenshot");
+			e.isHasAcc = rs->getInt("has_acc");
+			e.eventType = "mouse";
+			
+			if(e.isHasAcc)
+			{
+				e.acc = getAccElement(name, id);
+			}
+		}
+
+		delete prep_stmt;
+		delete rs;
+	}
+	catch(sql::SQLException &exception)
+	{
+		printException(exception);
+	}
+	return e;
 }

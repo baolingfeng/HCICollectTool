@@ -483,23 +483,6 @@ LRESULT CALLBACK LLMouseHookProc(int nCode, WPARAM wParam, LPARAM lParam)
 			std::string img = "log/screen/" + strTime +  ".png";
 			GetScreeny(SCREEN_RECT,from_string(img).c_str(),100);
 
-			/*
-			if(DirectX_Capture)
-			{
-				ScreenShot(g_pd3dDevice,from_string(img),winRect);
-			}
-			else
-			{
-				cv::Rect rect;
-				rect.x = winRect.left>0 ? winRect.left : 0;
-				rect.y = winRect.top>0 ? winRect.top : 0;
-				rect.width = winRect.right - rect.x;
-				rect.height = winRect.bottom - rect.y;
-				cv::Mat cap = GetScreenRect(rect); //cv::Rect(0,0,screenWidth,screenHeight));
-				cv::imwrite(img,cap);
-			}
-			*/
-
 			ParamData p;
 			p.pt = point;
 			p.sys = sys;
@@ -561,6 +544,7 @@ DWORD WINAPI AccessUIThreadFunction( LPVOID lpParam )
 
 	//EnterCriticalSection(&_critical);
 	
+	/*
 	IUIAutomationCacheRequest* cacheRequest;
 	g_pAutomation->CreateCacheRequest(&cacheRequest);
 	cacheRequest->AddPattern(UIA_ValuePatternId);
@@ -568,22 +552,22 @@ DWORD WINAPI AccessUIThreadFunction( LPVOID lpParam )
 	cacheRequest->AddProperty(UIA_RuntimeIdPropertyId);
 	cacheRequest->AddProperty(UIA_NamePropertyId);
 	cacheRequest->AddProperty(UIA_BoundingRectanglePropertyId);
+	*/
 
 	IUIAutomationElement* element = NULL;
 
-	hr = g_pAutomation->ElementFromPointBuildCache(point,cacheRequest,&element);
-
+	//hr = g_pAutomation->ElementFromPointBuildCache(point,cacheRequest,&element);
+	hr = g_pAutomation->ElementFromPoint(point, &element);
 	//printf_s("bad_alloc 3\n"); 
 
 	if(element == NULL || S_OK != hr)
 	{
 		printf_s("Cann't get Element\n");
 		
-		if(cacheRequest != NULL)
-		{
-			cacheRequest->Release();
-		
-		}
+		//if(cacheRequest != NULL)
+		//{
+		//	cacheRequest->Release();
+		//}
 		
 		if(element != NULL)
 		{
@@ -598,7 +582,10 @@ DWORD WINAPI AccessUIThreadFunction( LPVOID lpParam )
 	std::string elementDesc = GetElementDescStr(element);
 	std::string elementName = GetElementNameStr(element);
 	std::string elementValue = GetElementValueStr(element);
-	//std::string elementParent = GetElementParentNameStr(g_pControlWalker,element);
+
+	string pname, ptype;
+	GetElementParentNameWStr(g_pControlWalker,element, pname, ptype);
+
 	ReplaceAll(elementValue,"\n","\\n");
 	ReplaceAll(elementValue,"\t","\\t");
 	//TODO: Parent name when name is empty, but not success
@@ -607,8 +594,8 @@ DWORD WINAPI AccessUIThreadFunction( LPVOID lpParam )
 	element->GetRuntimeId(&rumtimeId);
 
 	RECT bounding;
-	element->get_CachedBoundingRectangle(&bounding);
-
+	//element->get_CachedBoundingRectangle(&bounding);
+	element->get_CurrentBoundingRectangle(&bounding);
 	std::string runtimeId = GetRuntimeIDStr(rumtimeId);
 		
 	//printf_s("bad_alloc 4\n"); 
@@ -624,22 +611,22 @@ DWORD WINAPI AccessUIThreadFunction( LPVOID lpParam )
 	_tfopen_s(&file,temp.c_str(),_T("w"));
 	temp.clear();
 
-	fprintf_s(file, "%s %d\n", strTime.c_str());
-	fprintf_s(file, "RuntimeID: %s\n", runtimeId.c_str());
+	fprintf_s(file, "%s %d\n", strTime.c_str()); //timestamp
+	fprintf_s(file, "%s\n", runtimeId.c_str()); //runtime id
 	//fprintf_s(file, "Window: %s\n", windowName.c_str());
-	fprintf_s(file, "Type: %s\n", elementDesc.c_str());
-	fprintf_s(file, "Name: %s\n", elementName.c_str());
-	fprintf_s(file, "Bounding: %d %d %d %d\n", bounding.left, bounding.top, bounding.right, bounding.bottom);
-	//fprintf_s(file, "ParentName: %s\n", elementParent.c_str());
-	fprintf_s(file, "Value: %s\n", elementValue.c_str());
+	fprintf_s(file, "%s\n", elementDesc.c_str()); //control type
+	fprintf_s(file, "%s\n", elementName.c_str()); //contorl name
+	fprintf_s(file, "%d %d %d %d\n", bounding.left, bounding.top, bounding.right, bounding.bottom); //bounding
+	fprintf_s(file, "%s\n", pname.c_str()); //parent name
+	fprintf_s(file, "%s\n", ptype.c_str()); //parent type
+	fprintf_s(file, "%s", elementValue.c_str()); //control value
 
 	fclose(file);
 
-	if(cacheRequest != NULL)
-	{
-		cacheRequest->Release();
-		
-	}
+	//if(cacheRequest != NULL)
+	//{
+	//	cacheRequest->Release();	
+	//}
 		
 	if(element != NULL)
 	{
@@ -650,9 +637,9 @@ DWORD WINAPI AccessUIThreadFunction( LPVOID lpParam )
 
 	CoUninitialize();
 	}
-	catch(bad_alloc)
+	catch(std::exception &e)
 	{
-		printf_s("a bad_alloc exception just occured\n"); 
+		printf_s("exception: %s\n", e.what()); 
 	}
 	return 0; 
 }

@@ -11,6 +11,7 @@
 
 #include "LogEvent.h"
 #include "LogReader.h"
+#include "DBInterface.h"
 using namespace std;
 
 
@@ -26,35 +27,32 @@ public:
 	void calcStatistic();
 	void groupAccAction();
 
-	string getScreenshotTimestamp(int seq);
-	//string getScreenImagePath(int seq=0);
-	//cv::Mat readScreenImageInCV(int seq=0);
-
-	LogEvent getEvent(string timestamp);
-	LogEvent getEvent(int index);
-	AccElement getAccElement(string timestamp);
-	AccElement getAccElement(int index);
+	void genereateMarkovForProcess();
 
 	double calcDuration(int from, int to);
 
-	void setLogDir(string folder);
 	void clear();
 
+	cv::Mat getScreenshot(string timestamp, string type);
+	LogEvent getMouseEvent(string timestamp);
+	string keysToString(vector<LogEvent>);
 public:
-	LogReader reader;
+	vector<vector<LogEvent>> keyEvents;
 	vector<LogEvent> events;
-	
-	//statistic
+	vector<CopyEvent> copy_events;
+	vector<PasteEvent> paste_events;
+
 	double totaltime;
 	vector<int> screenshot_events;
 	vector<int> accui_events;
-	//vector<AccElement> elements;
 	
-	hash_map<string, int> events_map;
-	set<string> process_set;
-	set<string> window_set;
 	vector<EventProcess> processes;
+	set<string> process_set;
+	hash_map<string, double> process_stat;
 
-	string logDir;
+	set<string> window_set;
+
+	string name;
+	DBInterface* db;
 };
 

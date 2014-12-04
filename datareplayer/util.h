@@ -169,3 +169,36 @@ inline cv::Mat QImage2Mat(QImage const& src)
      cvtColor(tmp, result,CV_BGR2RGB);
      return result;
 }
+
+inline std::wstring from_string(const std::string& s)
+{
+	//std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+	//std::wstring wide = converter.from_bytes(str);
+
+	int len;
+    int slength = (int)s.length() + 1;
+    len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0); 
+    wchar_t* buf = new wchar_t[len];
+    MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
+    std::wstring r(buf);
+    delete[] buf;
+    return r;
+
+	//return wide;
+}
+
+inline std::string readAllFromStream(std::istream & stream)
+{
+  std::string s;
+
+  int p = stream.tellg();  // remember where we are
+
+  stream.seekg(0, std::ios_base::end); // go to the end
+  int sz = stream.tellg();  // work out the size
+  stream.seekg(0, stream.beg);     // restore the position
+
+  s.resize(sz);          // resize the string
+  stream.read(&s[0], sz);  // and finally, read in the data.
+
+  return s;
+}

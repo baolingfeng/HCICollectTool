@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "util.h"
+#include <iostream>
 
 std::wstring WINAPI GetMouseEventNameWStr(WPARAM wParam)
 {	
@@ -344,8 +345,8 @@ void ReplaceAll(std::string& str,std::string from,std::string to)
 std::wstring WINAPI GetElementDescWStr(IUIAutomationElement* element)
 {
 	BSTR desc = NULL;
-	element->get_CachedLocalizedControlType(&desc);
-	//element->get_CurrentLocalizedControlType(&desc);
+	//element->get_CachedLocalizedControlType(&desc);
+	element->get_CurrentLocalizedControlType(&desc);
 
 	if(desc)
 	{
@@ -368,8 +369,8 @@ std::string WINAPI GetElementDescStr(IUIAutomationElement* element)
 std::wstring WINAPI GetElementNameWStr(IUIAutomationElement* element)
 {
 	BSTR name = NULL;
-	element->get_CachedName(&name);
-	//element->get_CurrentName(&name);
+	//element->get_CachedName(&name);
+	element->get_CurrentName(&name);
 	
 	if(name)
 	{
@@ -393,8 +394,8 @@ std::string WINAPI GetElementNameStr(IUIAutomationElement* element)
 std::wstring WINAPI GetElementValueWStr(IUIAutomationElement* element)
 {
 	IValueProvider* pattern = NULL; 
-	HRESULT hr = element->GetCachedPattern(UIA_ValuePatternId,(IUnknown**)&pattern);
-	//HRESULT hr = element->GetCurrentPattern(UIA_ValuePatternId,(IUnknown**)&pattern);
+	//HRESULT hr = element->GetCachedPattern(UIA_ValuePatternId,(IUnknown**)&pattern);
+	HRESULT hr = element->GetCurrentPattern(UIA_ValuePatternId,(IUnknown**)&pattern);
 
 	if(hr == S_OK && pattern != NULL)
 	{
@@ -419,7 +420,23 @@ std::string WINAPI GetElementValueStr(IUIAutomationElement* element)
 	return to_utf8(GetElementValueWStr(element));
 }
 
-std::wstring WINAPI GetElementParentNameWStr(IUIAutomationTreeWalker* walker, IUIAutomationElement* element)
+bool isWantedControl(string type)
+{
+	//string CONTROL_TYPE[] = {"window", "dialog", "menu item", "tab", "tool bar", "pane", "窗口", "对话框", "菜单项目", "工具栏", "窗格", "Tab 键"};
+	wstring CONTROL_TYPE[] = {_T("window"), _T("dialog"), _T("menu item"), _T("tab"), _T("tool bar"), _T("pane"), _T("窗口"), _T("对话框"), _T("菜单项目"), _T("工具栏"), _T("窗格"), _T("Tab 键")};
+
+	for(int i=0; i<12; i++)
+	{
+		if(type == to_utf8(CONTROL_TYPE[i]))
+		{
+			//printf_s("Get Parent %s\n", type.c_str());
+			return true;
+		}
+	}
+	return false;
+}
+
+void WINAPI GetElementParentNameWStr(IUIAutomationTreeWalker* walker, IUIAutomationElement* element,  string& pname, string& ptype)
 {
 	IUIAutomationElement* parent;
 	//HRESULT hr = element->GetCachedParent(&parent);
@@ -428,24 +445,31 @@ std::wstring WINAPI GetElementParentNameWStr(IUIAutomationTreeWalker* walker, IU
 
 	if(hr == S_OK && parent != NULL)
 	{
-		wstring pname = GetElementNameWStr(parent);
-
-		if(pname == _T(""))
+		pname = GetElementNameStr(parent);
+		ptype = GetElementDescStr(parent);
+		trim(pname);
+		//printf_s("Parent %s %s %d\n", ptype.c_str(), "窗格",ptype == to_utf8(_T("窗格")));
+		if(pname == "" || !isWantedControl(ptype))
 		{
-			return GetElementParentNameWStr(walker, parent);
+			return GetElementParentNameWStr(walker, parent, pname, ptype);
 		}
 		else
 		{
-			return pname;
+			//printf_s("Parent %s %s\n", ptype.c_str(), pname.c_str());
+			return;
 		}
 	}
 
-	return _T("");
+	pname = "";
+	ptype = "";
+	return;
 }
+/*
 std::string WINAPI GetElementParentNameStr(IUIAutomationTreeWalker* walker, IUIAutomationElement* element)
 {
 	return to_utf8(GetElementParentNameWStr(walker, element));
 }
+*/
 
 std::wstring WINAPI GetRuntimeIDWStr(SAFEARRAY* runtimeId)
 {
@@ -475,8 +499,8 @@ std::string WINAPI GetRuntimeIDStr(SAFEARRAY* runtimeId)
 double GetTimeDifference( SYSTEMTIME &st1, SYSTEMTIME &st2 )
 {
     FILETIME        ft1, ft2;
-    LARGE_INTEGER   li1, li2, liDiff;
-    DWORD dwDiff;
+    //LARGE_INTEGER   li1, li2, liDiff;
+    //DWORD dwDiff;
 
     SystemTimeToFileTime( &st1, &ft1 );
     SystemTimeToFileTime( &st2, &ft2 );
@@ -580,8 +604,8 @@ int GetScreeny(RECT r,LPCWSTR  lpszFilename, ULONG uQuality) // by Napalm
         int iRes;
         CLSID imageCLSID;
         Gdiplus::Bitmap *pScreenShot;
-        HGLOBAL hMem;
-        int result;
+        //HGLOBAL hMem;
+        //int result;
 
         // get the area of my application's window      
         //GetClientRect(hMyWnd, &r);
@@ -622,8 +646,8 @@ int GetScreeny(RECT r,LPCWSTR  lpszFilename, ULONG uQuality) // by Napalm
         DeleteDC(hdcCapture);
         DeleteDC(dc);
 
-        Gdiplus::GpImage *bob;
-        IStream *ssStr;
+        //Gdiplus::GpImage *bob;
+        //IStream *ssStr;
 
         // save the buffer to a file    
         pScreenShot = new Gdiplus::Bitmap(hbmCapture, (HPALETTE)NULL);
